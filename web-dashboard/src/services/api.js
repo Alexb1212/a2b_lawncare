@@ -31,3 +31,15 @@ export const stopJob = async (jobId, token) => {
   });
   return res.json();
 };
+
+export const savePropertyNotes = async (id, notes, token) => {
+  const res = await fetch(`${API_URL}/properties/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({ notes })
+  });
+  return res.json();
+};
