@@ -15,5 +15,5 @@ app.use('/api/properties', propertiesRoutes);
 app.use('/api/jobs', jobsRoutes);
 app.use('/api/invoices', invoicesRoutes);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
