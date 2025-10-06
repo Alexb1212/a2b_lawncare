@@ -41,7 +41,11 @@ CREATE TABLE IF NOT EXISTS jobs (
 CREATE TABLE IF NOT EXISTS invoices (
   id SERIAL PRIMARY KEY,
   job_id INT REFERENCES jobs(id) ON DELETE CASCADE,
-  amount NUMERIC(10, 2),
+  property_id INT REFERENCES properties(id),
+  company_id INT REFERENCES companies(id),
+  amount NUMERIC(10,2),
   description TEXT,
+  status VARCHAR(20) DEFAULT 'unpaid',
   created_at TIMESTAMP DEFAULT NOW()
 );
+
