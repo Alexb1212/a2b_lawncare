@@ -1,0 +1,31 @@
+
+const PERMISSIONS = {
+  VIEW_PROPERTIES: 'view:properties',
+  EDIT_PROPERTIES: 'edit:properties',
+  CREATE_PROPERTIES: 'create:properties',
+  VIEW_JOBS: 'view:jobs',
+  START_STOP_JOBS: 'act:jobs',
+  VIEW_INVOICES: 'view:invoices',
+  CREATE_INVOICES: 'create:invoices',
+  MARK_INVOICES_PAID: 'mark:invoices',
+  VIEW_USERS: 'view:users',
+  CREATE_USERS: 'create:users'
+};
+
+const ROLE_CAPABILITIES = {
+  admin: new Set(Object.values(PERMISSIONS)),
+  manager: new Set([
+    PERMISSIONS.VIEW_PROPERTIES, PERMISSIONS.EDIT_PROPERTIES, PERMISSIONS.CREATE_PROPERTIES,
+    PERMISSIONS.VIEW_JOBS, PERMISSIONS.START_STOP_JOBS,
+    PERMISSIONS.VIEW_INVOICES, PERMISSIONS.CREATE_INVOICES, PERMISSIONS.MARK_INVOICES_PAID
+  ]),
+  crew: new Set([
+    PERMISSIONS.VIEW_PROPERTIES,
+    PERMISSIONS.VIEW_JOBS, PERMISSIONS.START_STOP_JOBS,
+    PERMISSIONS.VIEW_INVOICES
+  ]),
+  viewer: new Set([PERMISSIONS.VIEW_PROPERTIES, PERMISSIONS.VIEW_JOBS, PERMISSIONS.VIEW_INVOICES])
+};
+
+function getCapabilitiesForRole(role) { return ROLE_CAPABILITIES[role] || new Set(); }
+module.exports = { PERMISSIONS, getCapabilitiesForRole };
