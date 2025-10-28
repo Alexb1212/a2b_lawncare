@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Properties from './pages/Properties';
 import Invoices from './pages/Invoices';
 import { me } from './services/api';
+import Jobs from './pages/Jobs';
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
@@ -33,6 +34,7 @@ export default function App() {
       <nav className="bg-blue-600 text-white p-4 flex gap-4">
         <Link to="/properties" className="hover:underline">Properties</Link>
         <Link to="/invoices" className="hover:underline">Invoices</Link>
+        <Link to="/jobs" className="hover:underline">Jobs</Link>
         <span className="ml-auto italic">Role: {role}</span>
         <button className="bg-red-500 px-3 py-1 rounded" onClick={logout}>Logout</button>
       </nav>
@@ -41,6 +43,7 @@ export default function App() {
           <Route path="/" element={<Navigate to="/properties" />} />
           <Route path="/properties" element={<Properties token={token} role={role} />} />
           <Route path="/invoices" element={<Invoices token={token} role={role} />} />
+          <Route path="/jobs" element={<Jobs token={token} role={role} />} />
         </Routes>
       </div>
     </div>

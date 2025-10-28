@@ -20,4 +20,5 @@ app.use('/api/jobs', jobsRoutes);
 app.use('/api/invoices', invoicesRoutes);
 
 const PORT = process.env.PORT || 5001;
+app.get('/api/health', (_req, res) => res.json ({ ok: true}));
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
